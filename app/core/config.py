@@ -9,6 +9,8 @@ class Settings(BaseSettings):
 	SECRET_KEY: str
 	DATABASE_URL: str
 
+	LOG_LEVEL: str = "INFO"
+
 	ACCESS_TOKEN_EXPIRE_MINUTES: int = 30
 
 	model_config = SettingsConfigDict(env_file = ".env", extra = "ignore")
