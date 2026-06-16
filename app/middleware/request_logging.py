@@ -13,6 +13,8 @@ class RequestLoggingMiddleware(BaseHTTPMiddleware):
 
 		start_time = time.perf_counter()
 
+		response = await call_next(request)
+
 		duration_ms = round((time.perf_counter() - start_time) * 100, 2)
 
 		client_ip = request.client.host if request.client else "unknown"
