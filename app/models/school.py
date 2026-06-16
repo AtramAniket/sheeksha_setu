@@ -15,7 +15,7 @@ class School(Base):
 
 	name: Mapped[str] = mapped_column(String(150), nullable = False)
 
-	board: MappedOptional[st[r]] = mapped_column(String(100), nullable = True)
+	board: Mapped[Optional[str]] = mapped_column(String(100), nullable = True)
 
 	registration_number: MappedOptional[st[r]] = mapped_column(String(100), nullable = True)
 
