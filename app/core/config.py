@@ -1,4 +1,4 @@
-from pydantic_setting import BaseSettings, SettingsConfigDict
+from pydantic_settings import BaseSettings, SettingsConfigDict
 
 
 class Settings(BaseSettings):
@@ -6,7 +6,7 @@ class Settings(BaseSettings):
 	APP_NAME: str = "Sheeksha Setu"
 	APP_ENV: str = "development"
 
-	SECRET_KET: str
+	SECRET_KEY: str
 	DATABASE_URL: str
 
 	ACCESS_TOKEN_EXPIRE_MINUTES: int = 30
