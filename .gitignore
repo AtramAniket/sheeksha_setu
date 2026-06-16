@@ -1,1 +1,6 @@
+# Virtual environment directory
 .venv/
+
+# Environment variables used in the project
+.env
+.env.example
