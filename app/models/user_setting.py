@@ -25,8 +25,11 @@ class UserSettings(Base):
 
 
     language: Mapped[str] = mapped_column(String(20), default="en")
+
     theme: Mapped[str] = mapped_column(String(20), default="light")
+    
     sms_notifications_enabled: Mapped[bool] = mapped_column(Boolean, default=True)
+    
     email_notifications_enabled: Mapped[bool] = mapped_column(Boolean, default=True)
 
     
