@@ -1,7 +1,7 @@
 from typing import Optional
 from datetime import datetime
 
-from sqlalchemy import DateTime, ForeignKey, String, Boolean
+from sqlalchemy import text, DateTime, ForeignKey, String, Boolean
 from sqlalchemy.orm import Mapped, mapped_column, relationship
 
 from app.db.base import Base
@@ -32,11 +32,11 @@ class SchoolBranch(Base):
 
 
 	# Meta
-	is_active: Mapped[bool] = mapped_column(Boolean, default = True)
-
 	created_at: Mapped[datetime] = mapped_column(DateTime, default = datetime.utcnow)
 
 	updated_at: Mapped[datetime] = mapped_column(DateTime, default = datetime.utcnow, onupdate = datetime.utcnow)
+
+	is_active: Mapped[bool] = mapped_column(Boolean, default = True, nullable=False, server_default=text("true"))
 
 
 	# Foreign key

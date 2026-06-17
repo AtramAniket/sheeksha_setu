@@ -3,7 +3,7 @@ from typing import Optional
 from datetime import datetime
 
 from sqlalchemy.orm import Mapped, mapped_column, relationship
-from sqlalchemy import Boolean, DateTime, Enum, ForeignKey, String
+from sqlalchemy import text, Boolean, DateTime, Enum, ForeignKey, String
 
 from app.db.base import Base
 
@@ -44,12 +44,12 @@ class User(Base):
 
     email: Mapped[str] = mapped_column(String(255), unique=True, index=True, nullable=False)
     
+    is_active: Mapped[bool] = mapped_column(Boolean, default=False, nullable=False, server_default=text("false"))
+    
+    email_verified: Mapped[bool] = mapped_column(Boolean, default=False, nullable=False, server_default=text("false"))
+    
     
     # Meta
-    is_active: Mapped[bool] = mapped_column(Boolean, default=False)
-    
-    email_verified: Mapped[bool] = mapped_column(Boolean, default=False)
-
     created_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow)
     
     updated_at: Mapped[datetime] = mapped_column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow)
