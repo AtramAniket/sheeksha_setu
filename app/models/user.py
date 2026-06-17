@@ -28,13 +28,11 @@ class User(Base):
     school_id: Mapped[Optional[int]] = mapped_column(
         ForeignKey("schools.id", ondelete="CASCADE"),
         nullable=True,
-        index=True
     )
 
     branch_id: Mapped[Optional[int]] = mapped_column(
         ForeignKey("school_branches.id", ondelete="CASCADE"),
         nullable=True,
-        index=True
     )
 
    

@@ -18,7 +18,6 @@ class UserSettings(Base):
     # Foreign Key
     user_id: Mapped[int] = mapped_column(
         ForeignKey("users.id", ondelete="CASCADE"),
-        index=True,
         unique=True,
         nullable=False,
     )

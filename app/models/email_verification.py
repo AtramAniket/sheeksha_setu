@@ -16,7 +16,7 @@ class EmailVerificationToken(Base):
 
     
     # Foreign Key
-    user_id: Mapped[int] = mapped_column(ForeignKey("users.id", ondelete="CASCADE"), index=True, nullable=False)
+    user_id: Mapped[int] = mapped_column(ForeignKey("users.id", ondelete="CASCADE"), nullable=False)
 
     
     token_hash: Mapped[str] = mapped_column(String(255), nullable=False, index=True)
