@@ -11,7 +11,7 @@ class SchoolBranch(Base):
 	__tablename__ = "school_branches"
 
 	# Primary Key
-	id: Mapped[int] = mapped_column(primmary_key = True, index = True)
+	id: Mapped[int] = mapped_column(primary_key = True, index = True)
 
 
 	name: Mapped[str] = mapped_column(String(150), nullable = False)
