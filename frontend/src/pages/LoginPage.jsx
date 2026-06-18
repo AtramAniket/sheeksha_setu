@@ -34,7 +34,7 @@ export default function LoginPage() {
     try {
       const data = await loginUser(formData);
 
-      login(data.access_token);
+      await login(data.access_token);
 
       navigate("/dashboard");
     } catch (err) {

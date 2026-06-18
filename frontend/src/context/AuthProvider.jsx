@@ -1,48 +1,61 @@
-import {useState} from "react";
+import { useEffect, useState } from "react";
 
-import AuthContext from './AuthContext';
+import { getCurrentUser } from "../api/auth";
+import AuthContext from "./AuthContext";
 
+export function AuthProvider({ children }) {
+  const [token, setToken] = useState(() => localStorage.getItem("access_token"));
+  const [user, setUser] = useState(null);
+  const [isAuthLoading, setIsAuthLoading] = useState(true);
 
-export function AuthProvider({children}){
+  useEffect(() => {
+    async function loadCurrentUser() {
+      if (!token) {
+        setIsAuthLoading(false);
+        return;
+      }
 
-	const [user, setUser] = useState(null);
-	const [token, setToken] = useState(()=>localStorage.getItem("access_token"));
+      try {
+        const currentUser = await getCurrentUser();
+        setUser(currentUser);
+      } catch {
+        localStorage.removeItem("access_token");
+        setToken(null);
+        setUser(null);
+      } finally {
+        setIsAuthLoading(false);
+      }
+    }
 
-	
-	const login = (accessToken) => {
+    loadCurrentUser();
+  }, [token]);
 
-		localStorage.setItem("access_token", accessToken);
-		
-		setToken(accessToken);
-	}
+  const login = async (accessToken) => {
+    localStorage.setItem("access_token", accessToken);
+    setToken(accessToken);
 
-	
-	const logout = () => {
-		
-		localStorage.removeItem("access_token");
-		
-		setUser(null);
-		
-		setToken(null);
-	}
+    const currentUser = await getCurrentUser();
+    setUser(currentUser);
+  };
 
-	
-	const isAuthenticated = Boolean(token);
+  const logout = () => {
+    localStorage.removeItem("access_token");
+    setToken(null);
+    setUser(null);
+  };
 
-	
-	return(
-
-			<AuthContext.Provider value = {{
-					user,
-					token,
-					login,
-					logout,
-					setUser,
-					isAuthenticated
-			}}
-			>
-				{children}
-			</AuthContext.Provider>
-
-		)
+  return (
+    <AuthContext.Provider
+      value={{
+        token,
+        user,
+        isAuthLoading,
+        login,
+        logout,
+        isAuthenticated: Boolean(token && user),
+      }}
+    >
+      {children}
+    </AuthContext.Provider>
+  );
 }
