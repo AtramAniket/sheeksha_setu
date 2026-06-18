@@ -7,3 +7,46 @@ __pycache__/
 # Environment variables used in the project
 .env
 .env.example
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Core Pycache
+app/core/__pycache__/
+# Virtual Env
+venv/
+.venv/
+env/
+
+# Environment variables
+.env
+
+# IDE
+.vscode/
+.idea/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Testing
+.pytest_cache/
+
+# Coverage
+.coverage
+htmlcov/
+
+# Migrations cache
+*.db
+
+# Logs
+*.log
+logs/
+
+# Build
+build/
+dist/
+
+# Alembic
+alembic/versions/__pycache__/
