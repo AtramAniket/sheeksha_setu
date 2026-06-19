@@ -1,13 +1,33 @@
+import { Link, useLocation } from "react-router-dom";
+
 import { useAuth } from "@/context/useAuth";
 import { Button } from "@/components/ui/button";
 
 const navItems = [
-  "Dashboard",
-  "Students",
-  "Teachers",
-  "Attendance",
-  "Fees",
-  "Settings",
+  {
+    label: "Dashboard",
+    path: "/dashboard",
+  },
+  {
+    label: "Students",
+    path: "/students",
+  },
+  {
+    label: "Teachers",
+    path: "/teachers",
+  },
+  {
+    label: "Attendance",
+    path: "/attendance",
+  },
+  {
+    label: "Fees",
+    path: "/fees",
+  },
+  {
+    label: "Settings",
+    path: "/settings",
+  },
 ];
 
 import {
@@ -18,8 +38,10 @@ import {
   SheetTrigger,
 } from "@/components/ui/sheet";
 
-function AppLayout({ children }) {
+function AppLayout({ title, description, children }) {
   const { user, logout } = useAuth();
+
+  const location = useLocation();
 
   return (
     <div className="min-h-screen bg-slate-50 lg:grid lg:grid-cols-[260px_1fr]">
@@ -32,11 +54,13 @@ function AppLayout({ children }) {
         <nav className="p-4">
           {navItems.map((item) => (
             <Button
-              key={item}
-              variant={item === "Dashboard" ? "secondary" : "ghost"}
+              key={item?.label}
+              variant={
+                item?.path === location?.pathname ? "secondary" : "ghost"
+              }
               className="mb-1 w-full justify-start"
             >
-              {item}
+              <Link to={item.path}>{item.label}</Link>
             </Button>
           ))}
         </nav>
@@ -46,41 +70,43 @@ function AppLayout({ children }) {
         <header className="border-b bg-white px-6 py-4">
           <div className="flex items-center justify-between">
             <div>
-              <h2 className="text-lg font-semibold">Dashboard</h2>
+              <h2 className="text-lg font-semibold">{title}</h2>
               <p className="text-sm text-slate-500">
-                Welcome, {user?.full_name || "Admin"}
+                {description}
               </p>
             </div>
 
             <div className="flex items-center gap-2">
-  <Sheet>
-    <SheetTrigger asChild>
-      <Button variant="outline" className="lg:hidden">
-        Menu
-      </Button>
-    </SheetTrigger>
+              <Sheet>
+                <SheetTrigger asChild>
+                  <Button variant="outline" className="lg:hidden">
+                    Menu
+                  </Button>
+                </SheetTrigger>
 
-    <SheetContent side="left">
-      <SheetHeader>
-        <SheetTitle>Shiksha Setu</SheetTitle>
-      </SheetHeader>
+                <SheetContent side="left">
+                  <SheetHeader>
+                    <SheetTitle>Shiksha Setu</SheetTitle>
+                  </SheetHeader>
 
-      <nav className="mt-6 flex flex-col gap-2">
-        {navItems.map((item) => (
-          <Button
-            key={item}
-            variant={item === "Dashboard" ? "secondary" : "ghost"}
-            className="justify-start"
-          >
-            {item}
-          </Button>
-        ))}
-      </nav>
-    </SheetContent>
-  </Sheet>
+                  <nav className="mt-6 flex flex-col gap-2">
+                    {navItems.map((item) => (
+                      <Button
+                        key={item?.label}
+                        variant={
+                          item?.label === "Dashboard" ? "secondary" : "ghost"
+                        }
+                        className="justify-start"
+                      >
+                        <Link to={item?.path}>{item?.label}</Link>
+                      </Button>
+                    ))}
+                  </nav>
+                </SheetContent>
+              </Sheet>
 
-  <Button onClick={logout}>Logout</Button>
-</div>
+              <Button onClick={logout}>Logout</Button>
+            </div>
           </div>
         </header>
 

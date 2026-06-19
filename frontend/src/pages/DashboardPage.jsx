@@ -17,7 +17,7 @@ function DashboardPage() {
 
   return (
     <>
-      <AppLayout>
+      <AppLayout title = "Dashboard" description={`Welcome, ${user?.full_name || "Admin"}`}>
         <main className="min-h-screen bg-slate-50 p-6">
           <section className="grid gap-4 sm:grid-cols-2 xl:grid-cols-4">
             <Card>
