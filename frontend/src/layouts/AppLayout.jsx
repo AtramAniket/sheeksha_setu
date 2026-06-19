@@ -15,7 +15,7 @@ export default function AppLayout({ children }) {
                 Welcome, {user?.full_name || "Admin"}
               </p>
             </div>
-            <Button onClick={logout}></Button>
+            <Button onClick={logout}>Logout</Button>
           </div>
         </header>
         <main className="p-6">{children}</main>
