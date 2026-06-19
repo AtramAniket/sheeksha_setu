@@ -1,11 +1,15 @@
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
+import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+
 import { useAuth } from "@/context/useAuth";
+
+import {
+  Sheet,
+  SheetContent,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "@/components/ui/sheet";
 
 function DashboardPage() {
   const { user, logout } = useAuth();
@@ -19,7 +23,35 @@ function DashboardPage() {
             Welcome back, {user?.full_name || "Admin"}
           </p>
         </div>
+        <Sheet>
+          <SheetTrigger asChild>
+            <Button variant="outline">Open Menu</Button>
+          </SheetTrigger>
 
+          <SheetContent side="left">
+            <SheetHeader>
+              <SheetTitle>Shiksha Setu</SheetTitle>
+            </SheetHeader>
+
+            <nav className="mt-6 flex flex-col gap-3">
+              <Button variant="ghost" className="justify-start">
+                Dashboard
+              </Button>
+              <Button variant="ghost" className="justify-start">
+                Students
+              </Button>
+              <Button variant="ghost" className="justify-start">
+                Teachers
+              </Button>
+              <Button variant="ghost" className="justify-start">
+                Fees
+              </Button>
+              <Button variant="ghost" className="justify-start">
+                Settings
+              </Button>
+            </nav>
+          </SheetContent>
+        </Sheet>
         <Button onClick={logout}>Logout</Button>
       </div>
 
