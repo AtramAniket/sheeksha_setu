@@ -1,74 +1,90 @@
-import {BrowserRouter, Routes, Route} from "react-router-dom";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-import LoginPage from './pages/LoginPage';
-import RegisterPage from './pages/RegisterPage';
-import StudentsPage from "./pages/StudentsPage";
-import DashboardPage from './pages/DashboardPage';
+import LoginPage from "./pages/LoginPage";
+import RegisterPage from "./pages/RegisterPage";
+import ProtectedRoutes from "./routes/ProtectedRoutes";
 
-import ProtectedRoutes from './routes/ProtectedRoutes';
-import TeachersPage from "./pages/TeachersPage";
-import AttendancePage from "./pages/AttendancePage";
 import FeesPage from "./pages/FeesPage";
+import TeachersPage from "./pages/TeachersPage";
 import SettingsPage from "./pages/SettingsPage";
+import DashboardPage from "./pages/DashboardPage";
+import AttendancePage from "./pages/AttendancePage";
 
-export default function App(){
+import StudentsPage from "./pages/students/StudentsPage";
+import StudentCreatePage from "./pages/students/StudentsCreatePage";
 
-  return(
+export default function App() {
+  return (
+    <>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/login" element={<LoginPage />} />
 
-      <>
-        <BrowserRouter>
-          
-          <Routes>
-            
-            <Route path="/login" element={ <LoginPage/> }/>
+          <Route path="/register" element={<RegisterPage />} />
 
-            <Route path="/register" element={ <RegisterPage/> }/>
-
-            <Route path="/dashboard" element={ 
+          <Route
+            path="/dashboard"
+            element={
               <ProtectedRoutes>
-                <DashboardPage/>
+                <DashboardPage />
+              </ProtectedRoutes>
+            }
+          />
+
+          <Route path="/students">
+            <Route
+              index
+              element={
+                <ProtectedRoutes>
+                  <StudentsPage />
+                </ProtectedRoutes>
+              }
+            />
+            <Route path="create" element={ 
+              <ProtectedRoutes>
+                <StudentCreatePage/>
               </ProtectedRoutes>
               }
             />
+          </Route>
 
-            <Route path="/students" element={ 
+          <Route
+            path="/teachers"
+            element={
               <ProtectedRoutes>
-                <StudentsPage/>
+                <TeachersPage />
               </ProtectedRoutes>
-              }
-            />
+            }
+          />
 
-            <Route path="/teachers" element={ 
+          <Route
+            path="/attendance"
+            element={
               <ProtectedRoutes>
-                <TeachersPage/>
+                <AttendancePage />
               </ProtectedRoutes>
-              }
-            />
+            }
+          />
 
-            <Route path="/attendance" element={ 
+          <Route
+            path="/fees"
+            element={
               <ProtectedRoutes>
-                <AttendancePage/>
+                <FeesPage />
               </ProtectedRoutes>
-              }
-            />
+            }
+          />
 
-            <Route path="/fees" element={ 
+          <Route
+            path="/settings"
+            element={
               <ProtectedRoutes>
-                <FeesPage/>
+                <SettingsPage />
               </ProtectedRoutes>
-              }
-            />
-
-            <Route path="/settings" element={ 
-              <ProtectedRoutes>
-                <SettingsPage/>
-              </ProtectedRoutes>
-              }
-            />
-
-          </Routes>
-
-        </BrowserRouter>
-      </>
-    )
+            }
+          />
+        </Routes>
+      </BrowserRouter>
+    </>
+  );
 }
