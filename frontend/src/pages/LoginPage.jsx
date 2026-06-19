@@ -4,6 +4,9 @@ import { useNavigate, Link } from "react-router-dom";
 import { loginUser } from "../api/auth";
 import { useAuth } from "../context/useAuth";
 
+import { Button } from "@/components/ui/button";
+import { Input } from "@/components/ui/input";
+
 export default function LoginPage() {
   const navigate = useNavigate();
   const { login } = useAuth();
@@ -54,7 +57,7 @@ export default function LoginPage() {
       <form onSubmit={handleSubmit}>
         <div>
           <label htmlFor="email">Email</label>
-          <input
+          <Input
             id="email"
             name="email"
             type="email"
@@ -66,7 +69,7 @@ export default function LoginPage() {
 
         <div>
           <label htmlFor="password">Password</label>
-          <input
+          <Input
             id="password"
             name="password"
             type="password"
@@ -78,9 +81,9 @@ export default function LoginPage() {
 
         {error && <p>{error}</p>}
 
-        <button type="submit" disabled={isSubmitting}>
+        <Button type="submit" disabled={isSubmitting}>
           {isSubmitting ? "Logging in..." : "Login"}
-        </button>
+        </Button>
       </form>
 
       <p>

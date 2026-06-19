@@ -2,7 +2,7 @@ export default function RegisterPage() {
 
 	return(
 			<>
-				<h1>RegisterPage</h1>
+				<h1 className="text-3xl font-bold">RegisterPage</h1>
 			</>
 		)
 }

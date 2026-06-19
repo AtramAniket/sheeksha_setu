@@ -1,21 +1,67 @@
-import { useAuth } from "../context/useAuth";
+import { Button } from "@/components/ui/button";
+import {
+  Card,
+  CardContent,
+  CardHeader,
+  CardTitle,
+} from "@/components/ui/card";
+import { useAuth } from "@/context/useAuth";
 
-export default function DashboardPage() {
+function DashboardPage() {
   const { user, logout } = useAuth();
 
   return (
-    <div>
-      <h1>Dashboard</h1>
+    <main className="min-h-screen bg-slate-50 p-6">
+      <div className="mb-6 flex items-center justify-between">
+        <div>
+          <h1 className="text-3xl font-bold tracking-tight">Dashboard</h1>
+          <p className="text-slate-600">
+            Welcome back, {user?.full_name || "Admin"}
+          </p>
+        </div>
 
-      <p>Welcome, {user?.full_name}</p>
+        <Button onClick={logout}>Logout</Button>
+      </div>
 
-      <p>Email: {user?.email}</p>
+      <section className="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+        <Card>
+          <CardHeader>
+            <CardTitle>Total Students</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-3xl font-bold">0</p>
+          </CardContent>
+        </Card>
 
-      <p>Role: {user?.role}</p>
+        <Card>
+          <CardHeader>
+            <CardTitle>Total Teachers</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-3xl font-bold">0</p>
+          </CardContent>
+        </Card>
 
-      <button onClick={logout}>
-        Logout
-      </button>
-    </div>
+        <Card>
+          <CardHeader>
+            <CardTitle>Today's Attendance</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-3xl font-bold">0%</p>
+          </CardContent>
+        </Card>
+
+        <Card>
+          <CardHeader>
+            <CardTitle>Pending Fees</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-3xl font-bold">₹0</p>
+          </CardContent>
+        </Card>
+      </section>
+    </main>
   );
 }
+
+export default DashboardPage;
