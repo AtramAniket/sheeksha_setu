@@ -23,7 +23,7 @@ class Student(Base):
     )
 
     branch_id: Mapped[Optional[int]] = mapped_column(
-        ForeignKey("branches.id", ondelete="CASCADE"),
+        ForeignKey("school_branches.id", ondelete="CASCADE"),
         nullable=False,
         index=True
     )
