@@ -5,6 +5,8 @@ import RootRedirect from "./pages/root/RootRedirect";
 
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
+
+import PublicRoute from "./routes/PublicRoute";
 import ProtectedRoutes from "./routes/ProtectedRoutes";
 
 import FeesPage from "./pages/FeesPage";
@@ -25,7 +27,10 @@ export default function App() {
         <Routes>
           <Route path="/" element={<RootRedirect />} />
 
-          <Route path="/login" element={<LoginPage />} />
+          <Route path="/login" element={
+            <PublicRoute>
+              <LoginPage />
+            </PublicRoute>} />
 
           <Route path="/register" element={<RegisterPage />} />
 
