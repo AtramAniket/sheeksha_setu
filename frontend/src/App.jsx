@@ -46,6 +46,12 @@ export default function App() {
               </ProtectedRoutes>
               }
             />
+            <Route path=":id/edit" element={ 
+              <ProtectedRoutes>
+                <StudentCreatePage/>
+              </ProtectedRoutes>
+              }
+            />
           </Route>
 
           <Route
