@@ -12,6 +12,7 @@ import AttendancePage from "./pages/AttendancePage";
 
 import StudentsPage from "./pages/students/StudentsPage";
 import StudentCreatePage from "./pages/students/StudentsCreatePage";
+import StudentsEditPage from "./pages/students/StudentsEditPage";
 
 export default function App() {
   return (
@@ -48,7 +49,7 @@ export default function App() {
             />
             <Route path=":id/edit" element={ 
               <ProtectedRoutes>
-                <StudentCreatePage/>
+                <StudentsEditPage/>
               </ProtectedRoutes>
               }
             />
