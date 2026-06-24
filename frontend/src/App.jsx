@@ -1,6 +1,8 @@
 import { Toaster } from "sonner";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
+import RootRedirect from "./pages/root/RootRedirect";
+
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import ProtectedRoutes from "./routes/ProtectedRoutes";
@@ -12,8 +14,8 @@ import DashboardPage from "./pages/DashboardPage";
 import AttendancePage from "./pages/AttendancePage";
 
 import StudentsPage from "./pages/students/StudentsPage";
-import StudentCreatePage from "./pages/students/StudentsCreatePage";
 import StudentsEditPage from "./pages/students/StudentsEditPage";
+import StudentCreatePage from "./pages/students/StudentsCreatePage";
 import StudentDetailsPage from "./pages/students/StudentDetailsPage";
 
 export default function App() {
@@ -21,6 +23,8 @@ export default function App() {
     <>
       <BrowserRouter>
         <Routes>
+          <Route path="/" element={<RootRedirect />} />
+
           <Route path="/login" element={<LoginPage />} />
 
           <Route path="/register" element={<RegisterPage />} />
