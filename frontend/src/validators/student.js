@@ -8,7 +8,7 @@ import {
 } from "./common";
 
 export const studentCreateSchema = z.object({
-  admission_no: requiredString("Admission number").max(
+  admission_number: requiredString("Admission number").max(
     30,
     "Admission number must be less than 30 characters"
   ),
@@ -23,8 +23,8 @@ export const studentCreateSchema = z.object({
   class_name: requiredString("Class"),
   section: optionalString(),
 
-  guardian_name: nameField("Guardian name"),
-  guardian_phone: indianMobileField("Guardian phone"),
+  parent_name: nameField("Guardian name"),
+  parent_phone: indianMobileField("Guardian phone"),
 
   address: optionalString(),
 });
