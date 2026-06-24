@@ -14,6 +14,7 @@ import AttendancePage from "./pages/AttendancePage";
 import StudentsPage from "./pages/students/StudentsPage";
 import StudentCreatePage from "./pages/students/StudentsCreatePage";
 import StudentsEditPage from "./pages/students/StudentsEditPage";
+import StudentDetailsPage from "./pages/students/StudentDetailsPage";
 
 export default function App() {
   return (
@@ -47,6 +48,14 @@ export default function App() {
               element={
                 <ProtectedRoutes>
                   <StudentCreatePage />
+                </ProtectedRoutes>
+              }
+            />
+            <Route
+              path=":id"
+              element={
+                <ProtectedRoutes>
+                  <StudentDetailsPage />
                 </ProtectedRoutes>
               }
             />

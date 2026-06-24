@@ -109,8 +109,12 @@ function StudentsPage() {
                     <tr key={student.id} className="border-t">
                       <td className="px-4 py-3">{student.admission_number}</td>
                       <td className="px-4 py-3 font-medium">
-                        {student.first_name} {student.middle_name || ""}{" "}
-                        {student.last_name || ""}
+                        <Link
+                          to={`/students/${student.id}`}
+                          className="font-medium hover:underline"
+                        >
+                          {student.first_name} {student.last_name}
+                        </Link>
                       </td>
                       <td className="px-4 py-3">
                         {student.class_name || student.grade}
