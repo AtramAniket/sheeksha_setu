@@ -5,6 +5,7 @@ import { getStudents, deleteStudent } from "@/api/student";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
+import { toast } from "sonner";
 
 function StudentsPage() {
   const [students, setStudents] = useState([]);
@@ -34,9 +35,10 @@ function StudentsPage() {
       setStudents((current) =>
         current.filter((student) => student.id !== studentId),
       );
+      toast.success("Student deleted successfully.");
     } catch (err) {
       console.error(err);
-      alert("Failed to delete student.");
+      toast.error("Failed to delete student.");
     }
   }
 

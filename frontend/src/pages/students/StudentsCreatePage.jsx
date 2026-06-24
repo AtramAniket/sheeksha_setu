@@ -1,3 +1,4 @@
+import { toast } from "sonner";
 import { useState } from "react";
 import { useForm } from "react-hook-form";
 import { Link, useNavigate } from "react-router-dom";
@@ -42,10 +43,12 @@ function StudentsCreatePage() {
     try {
       setServerError("");
       await createStudent(values);
+      toast.success("Student created successfully.");
       navigate("/students");
     } catch (err) {
       console.error(err);
       setServerError("Failed to create student. Please check the details.");
+      toast.error("Fasiled to create student.")
     }
   }
 

@@ -1,3 +1,4 @@
+import { Toaster } from "sonner";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 import LoginPage from "./pages/LoginPage";
@@ -41,16 +42,20 @@ export default function App() {
                 </ProtectedRoutes>
               }
             />
-            <Route path="create" element={ 
-              <ProtectedRoutes>
-                <StudentCreatePage/>
-              </ProtectedRoutes>
+            <Route
+              path="create"
+              element={
+                <ProtectedRoutes>
+                  <StudentCreatePage />
+                </ProtectedRoutes>
               }
             />
-            <Route path=":id/edit" element={ 
-              <ProtectedRoutes>
-                <StudentsEditPage/>
-              </ProtectedRoutes>
+            <Route
+              path=":id/edit"
+              element={
+                <ProtectedRoutes>
+                  <StudentsEditPage />
+                </ProtectedRoutes>
               }
             />
           </Route>
@@ -92,6 +97,7 @@ export default function App() {
           />
         </Routes>
       </BrowserRouter>
+      <Toaster richColors position="top-right" />
     </>
   );
 }

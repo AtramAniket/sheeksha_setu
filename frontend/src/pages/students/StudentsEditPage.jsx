@@ -1,3 +1,4 @@
+import { toast } from "sonner";
 import { useForm } from "react-hook-form";
 import { useEffect, useState } from "react";
 import { zodResolver } from "@hookform/resolvers/zod";
@@ -78,9 +79,11 @@ function StudentsEditPage() {
     try {
       setServerError("");
       await updateStudent(id, values);
+      toast.success("Student details updated successfully.")
       navigate("/students");
     } catch (err) {
       console.error(err);
+      toast.error("Failed to update student details.")
       setServerError("Failed to update student. Please check the details.");
     }
   }
