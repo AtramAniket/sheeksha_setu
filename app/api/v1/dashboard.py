@@ -16,7 +16,7 @@ def get_dashboard_stats(
     db: Session = Depends(get_db),
     current_user: User = Depends(get_current_user),
 ):
-    total_students = db.scalar(select(func.count(Student.id))) or 0
+    total_students = db.scalar(select(func.count(Student.id)).where(Student.is_active.is_(True))) or 0
 
     return DashboardStatsResponse(
         total_students=total_students,
