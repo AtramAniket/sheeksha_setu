@@ -5,6 +5,7 @@ from app.api.v1.schools import school_router
 from app.api.v1.auth import auth_router
 from app.api.v1.students import student_router
 from app.api.v1.school_branches import school_branch_router
+from app.api.v1.dashboard import dashboard_router
 from app.core.logging import setup_logging
 from fastapi.middleware.cors import CORSMiddleware
 from app.middleware import RequestLoggingMiddleware
@@ -27,6 +28,7 @@ app.include_router(auth_router)
 app.include_router(student_router)
 app.include_router(school_router)
 app.include_router(school_branch_router)
+app.include_router(dashboard_router)
 
 @app.get("/")
 def root():
